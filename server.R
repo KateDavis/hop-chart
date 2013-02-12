@@ -38,16 +38,15 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   }
 }
 
-#hops.comp <- read.table("hops-comp.txt",header=T)
 hops.comp.wide <- read.table("hops-comp-wide.csv",header=T)
-hops.comp.wide$Hops.Variety <- as.character(hops.comp.wide$Hops.Variety)
-hops.comp.wide$Hops.Variety <- ifelse(hops.comp.wide$Hops.Variety=="Hallertauer Mittelfr\xfch","Hallertauer Mittelfruh",hops.comp.wide$Hops.Variety)
-hops.comp.wide$Hops.Variety <- ifelse(hops.comp.wide$Hops.Variety=="H\xfcller Bitterer","Huller Bitterer",hops.comp.wide$Hops.Variety)
+#hops.comp.wide$Hops.Variety <- as.character(hops.comp.wide$Hops.Variety)
+#hops.comp.wide$Hops.Variety <- ifelse(hops.comp.wide$Hops.Variety=="Hallertauer Mittelfr\xfch","Hallertauer Mittelfruh",hops.comp.wide$Hops.Variety)
+#hops.comp.wide$Hops.Variety <- ifelse(hops.comp.wide$Hops.Variety=="H\xfcller Bitterer","Huller Bitterer",hops.comp.wide$Hops.Variety)
 
 shinyServer(function(input, output) {
   
   output$hopList <- reactiveUI(function() {
-    selectInput("hopList", "Hop Variety:", unique(hops.comp.wide$Hops.Variety))
+    selectInput("hopList", "Hop Variety:", sort(unique(hops.comp.wide$Hops.Variety)))
   })
   
   output$acidsPlot <- reactivePlot(function() {

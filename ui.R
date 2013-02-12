@@ -1,6 +1,6 @@
 library(shiny)
 
-appVersion <- "1.3"
+appVersion <- "1.4"
 
 title <- function(...) {
   div(style="font-size:250%;float:left;padding-left:20px", ...)
